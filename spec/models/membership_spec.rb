@@ -32,7 +32,7 @@ describe Membership do
         expect(current_user.boards.first.role(current_user)).to eq :admin
         expect(current_user.boards.last.role(current_user)).to eq :member
         
-        # or
+        # or, without using the Board#role method
         first_board = current_user.boards.first
         first_role = current_user.memberships.where(board: first_board).first.role
         expect(first_role).to eq :admin
@@ -46,7 +46,7 @@ describe Membership do
         expect(current_user.boards.first.role(current_user)).to eq :member
         expect(current_user.boards.last.role(current_user)).to eq :admin
 
-        # or
+        # or, without using the Board#role method
         first_board = current_user.boards.first
         first_role = current_user.memberships.where(board: first_board).first.role
         expect(first_role).to eq :member
