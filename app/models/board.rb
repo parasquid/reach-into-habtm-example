@@ -1,6 +1,8 @@
 class Board < ActiveRecord::Base
   has_many :memberships
-  def role(user)
-    memberships.where(user: user, board: self).first.role
+  has_many :users, through: :memberships
+  def role
+    return :admin if role_mask == 1
+    return :member if role_mask == 4
   end
 end

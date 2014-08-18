@@ -29,13 +29,8 @@ describe Membership do
       let(:current_user) { User.first }
 
       it 'returns the current user\'s board\'s membership role' do
-        expect(current_user.boards.first.role(current_user)).to eq :admin
-        expect(current_user.boards.last.role(current_user)).to eq :member
-        
-        # or, without using the Board#role method
-        first_board = current_user.boards.first
-        first_role = current_user.memberships.where(board: first_board).first.role
-        expect(first_role).to eq :admin
+        expect(current_user.boards.first.role).to eq :admin
+        expect(current_user.boards.last.role).to eq :member
       end
     end
 
@@ -43,13 +38,8 @@ describe Membership do
       let(:current_user) { User.last }
 
       it 'returns the current user\'s board\'s membership role' do
-        expect(current_user.boards.first.role(current_user)).to eq :member
-        expect(current_user.boards.last.role(current_user)).to eq :admin
-
-        # or, without using the Board#role method
-        first_board = current_user.boards.first
-        first_role = current_user.memberships.where(board: first_board).first.role
-        expect(first_role).to eq :member
+        expect(current_user.boards.first.role).to eq :member
+        expect(current_user.boards.last.role).to eq :admin
       end
     end
 
